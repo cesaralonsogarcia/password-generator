@@ -17,6 +17,9 @@ function generatePassword() {
   // Prompt user for password length
   var passwordLength = window.prompt("Enter password length between 8 and 128 characters:");
 
+  // Declare an empty password array to store all possible characters
+  var passwordContainer = [];
+
   // Alert that input cannot be blank
   if (!passwordLength) {
     alert("You must input a value!");
@@ -29,11 +32,24 @@ function generatePassword() {
     return generatePassword();
   }
 
-  // Declare an empty password array to store all possible characters
-  var passwordContainer = [];
+  passwordContainer = checkCharacterTypes(passwordContainer);
 
+  // String to hold the final password
+  var finalPassword = "";
+ 
+  for (i = 0; i < passwordLength; i++) {
+    var index = Math.floor(Math.random() * passwordContainer.length);
+    finalPassword += passwordContainer[index];
+  }
+
+  return finalPassword;
+}
+
+// Function to check for character types
+function checkCharacterTypes(passwordContainer) {
   // Prompt user for password characteristics, check selection and notify user
   var addLowerCase = window.confirm("Would you like to include lower case characters?");
+
   if (addLowerCase) {
     alert("Lower case added!");
     passwordContainer = passwordContainer.concat(lowerCase);
@@ -68,18 +84,11 @@ function generatePassword() {
   // Check if none of the options were selected
   if (!addLowerCase && !addUpperCase && !addNumeric && !addSpecial) {
     alert("You must choose at least one of the options!");
-    return generatePassword();
+    return checkCharacterTypes(passwordContainer);
   }
-
-  // String to hold the final password
-  var finalPassword = "";
- 
-  for (i = 0; i < passwordLength; i++) {
-    var index = Math.floor(Math.random() * passwordContainer.length);
-    finalPassword += passwordContainer[index];
+  else {
+    return passwordContainer;
   }
-
-  return finalPassword;
 }
 
 // Get references to the #generate element

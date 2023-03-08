@@ -32,7 +32,11 @@ THEN the password is either displayed in an alert or written to the page
 
 ## Application Screenshot
 
+![Password-Generator](https://github.com/cesaralonsogarcia/password-generator/blob/main/assets/images/password-generator-screenshot.png)
+
 ## Deployed Application
+
+https://cesaralonsogarcia.github.io/password-generator/
 
 ## Sources
 https://owasp.org/www-community/password-special-characters  

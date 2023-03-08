@@ -14,6 +14,7 @@ for (i = 0; i < lowerCase.length; i++) {
 
 // Function to generate password
 function generatePassword() {
+  // Prompt user for password length
   var passwordLength = window.prompt("Enter password length between 8 and 128 characters:");
 
   // Alert that input cannot be blank
@@ -31,30 +32,37 @@ function generatePassword() {
   // Declare an empty password array to store all possible characters
   var passwordContainer = [];
 
-  // Prompt user for password characteristics and check selection
+  // Prompt user for password characteristics, check selection and notify user
   var addLowerCase = window.confirm("Would you like to include lower case characters?");
-  var addUpperCase = window.confirm("Would you like to include UPPER CASE characters?");
-  var addNumeric = window.confirm("Would you like to include numeric characters?");
-  var addSpecial = window.confirm("Would you like to include special characters?");
-  
-  // Check for lower case option
   if (addLowerCase) {
+    alert("Lower case added!");
     passwordContainer = passwordContainer.concat(lowerCase);
+  } else {
+    alert("Lower case NOT added!");
   }
 
-  // Check for upper case option
+  var addUpperCase = window.confirm("Would you like to include upper case characters?");
   if (addUpperCase) {
+    alert("Upper case added!");
     passwordContainer = passwordContainer.concat(upperCase);
+  } else {
+    alert("Upper case NOT added!");
   }
 
-  // Check for numeric option
+  var addNumeric = window.confirm("Would you like to include numeric characters?");
   if (addNumeric) {
+    alert("Numbers added!");
     passwordContainer = passwordContainer.concat(numeric);
+  } else {
+    alert("Numbers NOT added!");
   }
 
-  // Check for special character option
+  var addSpecial = window.confirm("Would you like to include special characters?");
   if (addSpecial) {
+    alert("Special characters added!");
     passwordContainer = passwordContainer.concat(specialCharacters);
+  } else {
+    alert("Special characters NOT added!");
   }
 
   // Check if none of the options were selected
@@ -62,7 +70,7 @@ function generatePassword() {
     alert("You must choose at least one of the options!");
     return generatePassword();
   }
-  
+
   // String to hold the final password
   var finalPassword = "";
  

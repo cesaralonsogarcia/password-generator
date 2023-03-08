@@ -7,6 +7,9 @@ var specialCharacters = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")",
 "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\",
 "]", "^", "_", "`", "{", "|", "}", "~"];
 
+// Message for blank input or cancel button
+var cancelMessage = "Password generation was canceled. If no value was entered, try it again!";
+
 // Use toUpperCase method to create the upperCase array
 for (i = 0; i < lowerCase.length; i++) {
   upperCase[i] = lowerCase[i].toUpperCase();
@@ -17,26 +20,22 @@ function generatePassword() {
   // Prompt user for password length
   var passwordLength = window.prompt("Enter password length between 8 and 128 characters:");
 
-  // Declare an empty password array to store all possible characters
+  // Empty password array to store all possible characters
   var passwordContainer = [];
-
-  // Alert that input cannot be blank
-  if (!passwordLength) {
-    alert("You must input a value!");
-    return generatePassword();
-  }
-  
-  // Alert that input must be between 8 and 128
-  if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
-    alert("You must choose a number between 8 and 128.");
-    return generatePassword();
-  }
-
-  passwordContainer = checkCharacterTypes(passwordContainer);
 
   // String to hold the final password
   var finalPassword = "";
- 
+
+  // Alert that input cannot be blank or that input must be between 8 and 128
+  if (!passwordLength) {
+    return cancelMessage;
+  } else if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
+    alert("You must input a value between 8 and 128.");
+    return generatePassword();
+  } else {
+    passwordContainer = checkCharacterTypes(passwordContainer);
+  }
+
   for (i = 0; i < passwordLength; i++) {
     var index = Math.floor(Math.random() * passwordContainer.length);
     finalPassword += passwordContainer[index];
